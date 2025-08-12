@@ -221,7 +221,7 @@ public class PlayerInit {
                         throw new RuntimeException(e);
                     }
                 }
-                System.out.println(event.getKey() + " -> " + payload);
+                System.out.println("PlayerCustomClickEvent: " + event.getKey() + " -> " + payload);
             })
             .addListener(PlayerPacketOutEvent.class, event -> {
                 //System.out.println("out " + event.getPacket().getClass().getSimpleName());
