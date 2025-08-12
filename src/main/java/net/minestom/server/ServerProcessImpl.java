@@ -3,6 +3,7 @@ package net.minestom.server;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minestom.server.advancements.AdvancementManager;
 import net.minestom.server.adventure.bossbar.BossBarManager;
+import net.minestom.server.adventure.provider.MinestomClickCallbackProvider;
 import net.minestom.server.codec.StructCodec;
 import net.minestom.server.command.CommandManager;
 import net.minestom.server.component.DataComponents;
@@ -464,6 +465,8 @@ final class ServerProcessImpl implements ServerProcess {
 
             // Flush all waiting packets
             PacketViewableUtils.flush();
+
+            MinestomClickCallbackProvider.ADVENTURE_CLICK_MANAGER.tick(nanoTime);
 
             // Monitoring
             {
