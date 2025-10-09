@@ -16,7 +16,7 @@ public class ChickenCreature extends EntityCreature {
                 List.of(
 //                        new DoNothingGoal(this, 500, 0.1f),
 //                        new MeleeAttackGoal(this, 500, 2, TimeUnit.MILLISECOND),
-                        new RandomStrollGoal(this, 2)
+//                        new RandomStrollGoal(this, 2)
                 ),
                 List.of(
 //                        new LastEntityDamagerTarget(this, 15),

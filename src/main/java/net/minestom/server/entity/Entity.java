@@ -647,7 +647,9 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
             effectTick();
         }
         // Scheduled synchronization
-        if (vehicle == null && ticks >= nextSynchronizationTick) {
+        // TODO - figure out why this is here, "vehicle == null &&"
+        // TODO - causing issues with players head rotation when passenger
+        if (ticks >= nextSynchronizationTick) {
             synchronizePosition();
             sendPacketToViewers(getVelocityPacket());
         }
@@ -1315,7 +1317,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
      * @param newPosition the new position
      */
     @ApiStatus.Internal
-    public void refreshPosition(final Pos newPosition, boolean ignoreView, boolean sendPackets) {
+    public void     refreshPosition(final Pos newPosition, boolean ignoreView, boolean sendPackets) {
         final var previousPosition = this.position;
         final Pos position = ignoreView ? previousPosition.withCoord(newPosition) : newPosition;
         if (position.equals(lastSyncedPosition)) return;
