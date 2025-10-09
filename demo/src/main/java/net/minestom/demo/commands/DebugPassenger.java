@@ -17,7 +17,7 @@ public class DebugPassenger extends Command {
     private void execute(CommandSender sender, CommandContext context) {
         Player player = (Player) sender;
         ChickenCreature chicken = new ChickenCreature();
-        chicken.setInstance(((Player) sender).getInstance(), player.getPosition()).join();
+        chicken.setInstance(player.getInstance(), player.getPosition()).join();
         chicken.addPassenger(player);
     }
 }
