@@ -8,7 +8,7 @@ import net.minestom.server.network.packet.server.play.PlayerInfoUpdatePacket;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class PlayerEntity extends Entity {
+public class PlayerEntity extends EntityCreature {
     private final String username = "Minestom";
 
     private final String skinTexture = "ewogICJ0aW1lc3RhbXAiIDogMTc1NzcyNDE5NDAzNiwKICAicHJvZmlsZUlkIiA6ICI3MGNkYjNiZjhhN2E0ODYxYWY0ZWEzY2U1MDcwY2ViOSIsCiAgInByb2ZpbGVOYW1lIiA6ICJNaW5lc3RvbSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9iMTNkOTU0ZjRjMGJiMzYyY2MxNzYxYWRhYWY5N2NjYzcxNWM1OTc5MDdkNjdlNDI5ZmQzNzM3N2FiZWYwNTkyIgogICAgfQogIH0KfQ==";

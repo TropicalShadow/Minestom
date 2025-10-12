@@ -47,6 +47,7 @@ import net.minestom.server.network.packet.server.common.CustomReportDetailsPacke
 import net.minestom.server.network.packet.server.common.ServerLinksPacket;
 import net.minestom.server.network.packet.server.play.TrackedWaypointPacket;
 import net.minestom.server.sound.SoundEvent;
+import net.minestom.server.timer.TaskSchedule;
 import net.minestom.server.utils.Either;
 import net.minestom.server.utils.MathUtils;
 import net.minestom.server.utils.time.TimeUnit;
@@ -176,6 +177,13 @@ public class PlayerInit {
                             TrackedWaypointPacket.Icon.DEFAULT,
                             new TrackedWaypointPacket.Target.Vec3i(playerEntity.getPosition())
                     )));
+
+
+                    playerEntity.scheduler().scheduleTask(()->{
+                        playerEntity.getNavigator().setPathTo(player.getPosition().add(0,0,10));
+                        playerEntity.getViewersAsAudience().sendMessage(Component.text("Finished"));
+                        return TaskSchedule.stop();
+                    }, TaskSchedule.seconds(10));
                 }
             })
             .addListener(PlayerChatEvent.class, event -> {
