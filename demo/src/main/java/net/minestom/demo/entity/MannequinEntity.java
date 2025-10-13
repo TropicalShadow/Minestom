@@ -8,7 +8,7 @@ import net.minestom.server.network.packet.server.play.PlayerInfoUpdatePacket;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class MannequinEntity extends Entity {
+public class MannequinEntity extends EntityCreature {
     private final String username = "Minestom";
 
     private final String skinTexture = "ewogICJ0aW1lc3RhbXAiIDogMTc1NzcyNDE5NDAzNiwKICAicHJvZmlsZUlkIiA6ICI3MGNkYjNiZjhhN2E0ODYxYWY0ZWEzY2U1MDcwY2ViOSIsCiAgInByb2ZpbGVOYW1lIiA6ICJNaW5lc3RvbSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9iMTNkOTU0ZjRjMGJiMzYyY2MxNzYxYWRhYWY5N2NjYzcxNWM1OTc5MDdkNjdlNDI5ZmQzNzM3N2FiZWYwNTkyIgogICAgfQogIH0KfQ==";
@@ -37,6 +37,7 @@ public class MannequinEntity extends Entity {
         player.sendPackets(new EntityMetaDataPacket(getEntityId(), Map.of(
                 MetadataDef.Avatar.DISPLAYED_MODEL_PARTS_FLAGS.index(), Metadata.Byte((byte) 127)
         )));
+
     }
 
     @Override

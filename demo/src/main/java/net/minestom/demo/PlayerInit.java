@@ -6,6 +6,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.object.ObjectContents;
+import net.minestom.demo.entity.MannequinEntity;
 import net.minestom.demo.entity.PlayerEntity;
 import net.minestom.server.FeatureFlag;
 import net.minestom.server.MinecraftServer;
@@ -13,11 +14,13 @@ import net.minestom.server.advancements.FrameType;
 import net.minestom.server.advancements.Notification;
 import net.minestom.server.adventure.MinestomAdventure;
 import net.minestom.server.adventure.audience.Audiences;
+import net.minestom.server.collision.BoundingBox;
 import net.minestom.server.component.DataComponents;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.coordinate.Vec;
 import net.minestom.server.dialog.*;
 import net.minestom.server.entity.*;
+import net.minestom.server.entity.attribute.Attribute;
 import net.minestom.server.entity.damage.Damage;
 import net.minestom.server.entity.metadata.avatar.MannequinMeta;
 import net.minestom.server.entity.metadata.golem.CopperGolemMeta;
@@ -209,6 +212,15 @@ public class PlayerInit {
                             TrackedWaypointPacket.Icon.DEFAULT,
                             new TrackedWaypointPacket.Target.Vec3i(mannequinEntity.getPosition())
                     )));
+
+                    MannequinEntity man = new MannequinEntity();
+                    man.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.2f);
+                    man.setInstance(player.getInstance(), new Pos(0, 40, 0, -131, 0));
+                    BoundingBox bb = man.getBoundingBox();
+                    double centerToCorner = Math.sqrt(bb.width() * bb.width() + bb.depth() * bb.depth()) / 2;
+                    man.getNavigator().setPathTo(new Pos(-4, 40, 10, 60,0), centerToCorner, ()->{
+                        player.sendMessage("done");
+                    });
                 }
             })
             .addListener(PlayerChatEvent.class, event -> {
