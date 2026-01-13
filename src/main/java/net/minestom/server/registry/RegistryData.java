@@ -257,6 +257,7 @@ public final class RegistryData {
         private final @Nullable BlockEntityType blockEntityType;
         private final @Nullable Material material;
         private final @Nullable BlockSoundType blockSoundType;
+        private final Shape shape;
         private final Shape collisionShape;
         private final Shape occlusionShape;
 
@@ -297,6 +298,10 @@ public final class RegistryData {
                 }, null);
             }
             { // Unique special case where the shape strings can mutate but arent saved after the parse.
+                this.shape = fromParent(parent, BlockEntry::shape, main, "shape", (properties, string)->{
+                    String shape = properties.getString(string);
+                    return CollisionUtils.parseCollisionShape(internCache, shape);
+                }, null);
                 this.collisionShape = fromParent(parent, BlockEntry::collisionShape, main, "collisionShape", (properties, string) -> {
                     String shape = properties.getString(string);
                     return CollisionUtils.parseCollisionShape(internCache, shape);
@@ -448,6 +453,10 @@ public final class RegistryData {
 
         public boolean isSignalSource() {
             return (packedFlags & SIGNAL_SOURCE_OFFSET) != 0;
+        }
+
+        public Shape shape() {
+            return shape;
         }
 
         public Shape collisionShape() {
